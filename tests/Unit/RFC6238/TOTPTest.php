@@ -4,7 +4,7 @@ use Mockery as Mockery;
 use PHPUnit\Framework\TestCase;
 
 use LordDashMe\TwoFactorAuth\RFC6238\TOTP;
-use LordDashMe\TwoFactorAuth\Utilities\Base32;
+use LordDashMe\TwoFactorAuth\Utility\Base32;
 
 class TOTPTest extends TestCase
 {

@@ -9,7 +9,7 @@
  * file that was distributed with this surce code.
  */
 
-namespace LordDashMe\TwoFactorAuth\Utilities;
+namespace LordDashMe\TwoFactorAuth\Utility;
 
 /**
  * Base32 Utility.

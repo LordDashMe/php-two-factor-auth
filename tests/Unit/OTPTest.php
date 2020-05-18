@@ -4,7 +4,7 @@ use Mockery as Mockery;
 use PHPUnit\Framework\TestCase;
 
 use LordDashMe\TwoFactorAuth\OTP;
-use LordDashMe\TwoFactorAuth\Utilities\Base32;
+use LordDashMe\TwoFactorAuth\Utility\Base32;
 
 class OTPTest extends TestCase
 {

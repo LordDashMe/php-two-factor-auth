@@ -3,7 +3,7 @@
 use Mockery as Mockery;
 use PHPUnit\Framework\TestCase;
 
-use LordDashMe\TwoFactorAuth\Utilities\Base32;
+use LordDashMe\TwoFactorAuth\Utility\Base32;
 use LordDashMe\TwoFactorAuth\GoogleAuthenticator\BarcodeURL;
 use LordDashMe\TwoFactorAuth\GoogleAuthenticator\HOTPFormat;
 use LordDashMe\TwoFactorAuth\GoogleAuthenticator\TOTPFormat;
