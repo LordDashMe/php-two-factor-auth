@@ -3,6 +3,7 @@ services:
   app:
     tty: true
     stdin_open: true
+    # apk add composer
     # image: 'php:7.2-alpine'
     # apk add --no-cache $PHPIZE_DEPS && pecl install xdebug-2.6.0 && docker-php-ext-enable xdebug
     # image: 'php:7.1-alpine'

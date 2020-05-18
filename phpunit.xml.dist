@@ -21,13 +21,23 @@
     </php>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src/GoogleAuthenticator/</directory>
+            <directory suffix=".php">src/Utilities/</directory>
             <directory suffix=".php">src/RFC4226/</directory>
             <directory suffix=".php">src/RFC6238/</directory>
+            <file>src/OTP.php</file>
         </whitelist>
     </filter>
     <testsuites>
         <testsuite name="Unit">
-            <directory suffix="Test.php">tests/Unit/</directory>
+            <directory suffix="Test.php">tests/Unit/GoogleAuthenticator/</directory>
+            <directory suffix="Test.php">tests/Unit/Utilities/</directory>
+            <directory suffix="Test.php">tests/Unit/RFC4226/</directory>
+            <directory suffix="Test.php">tests/Unit/RFC6238/</directory>
+            <file>tests/Unit/OTPTest.php</file>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory suffix="Test.php">tests/Integration/</directory>
         </testsuite>
     </testsuites>
     <logging>
