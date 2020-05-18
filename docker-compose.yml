@@ -1,0 +1,17 @@
+version: '3.4'
+services:
+  app:
+    tty: true
+    stdin_open: true
+    # image: 'php:7.2-alpine'
+    # apk add --no-cache $PHPIZE_DEPS && pecl install xdebug-2.6.0 && docker-php-ext-enable xdebug
+    # image: 'php:7.1-alpine'
+    # image: 'php:7.0-alpine'
+    image: 'php:5.6-alpine'
+    # apk add --no-cache $PHPIZE_DEPS && pecl install xdebug-2.5.5 && docker-php-ext-enable xdebug
+    volumes:
+      - '${DOCKER_HOST_SOURCE_PATH}:/var/www/site/'
+networks:
+  default:
+    external:
+      name: '${DOCKER_HOST_PRE_DEFINED_NETWORK}'
