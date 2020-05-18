@@ -16,6 +16,10 @@ A PHP library for RFC 4226 and RFC 6238.
 composer require lorddashme/php-two-factor-auth
 ```
 
+### Native Way
+
+- @TODO
+
 ## Usage
 
 ### HOTP
