@@ -6,11 +6,15 @@ A PHP library for RFC 4226 and RFC 6238.
 
 ## Requirement(s)
 
-- @TODO
+- PHP version from 5.6.* up to latest.
 
 ## Install
 
-- @TODO
+- Recommended to install using Composer. Use the command below to install the package:
+
+```text
+composer require lorddashme/php-two-factor-auth
+```
 
 ## Usage
 
