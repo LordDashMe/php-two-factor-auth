@@ -164,13 +164,11 @@ class OTP
      */
     public function verify($generatedOTP)
     {
-        for ($i = 0; $i < $this->maxVerificationNumber; $i++) {
+        for ($x = 0; $x < $this->maxVerificationNumber; $x++) {
             
             $this->generate();
             
-            if ($this->get() == $generatedOTP) {
-                return true;
-            }
+            if ($this->get() === $generatedOTP) { return true; }
 
             $this->counter++;
         }
