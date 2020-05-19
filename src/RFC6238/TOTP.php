@@ -86,7 +86,7 @@ class TOTP extends OTP
     /**
      * The setter method for the time adjustments class property.
      * 
-     * @param  int $timeAdjustments  The max time remaining in seconds for TOTP.
+     * @param  int $timeAdjustments  The time to be adjust in seconds for TOTP.
      * 
      * @return $this
      */
