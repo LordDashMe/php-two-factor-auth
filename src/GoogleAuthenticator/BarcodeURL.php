@@ -56,7 +56,7 @@ class BarcodeURL
      * 
      * @var string
      */
-    private $algorithm = 'SHA1';
+    private $algorithm = 'sha1';
     
     /**
      * The number for digit(s) in a OTP password generation used.
@@ -118,11 +118,11 @@ class BarcodeURL
     {
         $parameters = array(
             'secret' => $this->secret, 
-            'algorithm' => $this->algorithm,
+            'algorithm' => \strtoupper($this->algorithm),
             'digits' => $this->digits
         );
 
-        $parameters = array_merge($parameters, $this->format->getParameters());
+        $parameters = \array_merge($parameters, $this->format->getParameters());
 
         if ($this->issuer) {
             $this->accountName = $this->issuer . ':' . $this->accountName;

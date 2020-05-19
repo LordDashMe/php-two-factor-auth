@@ -16,10 +16,6 @@ A PHP library for RFC 4226 and RFC 6238.
 composer require lorddashme/php-two-factor-auth
 ```
 
-### Native Way
-
-- @TODO
-
 ## Usage
 
 ### HOTP
@@ -34,8 +30,12 @@ require __DIR__  . '/vendor/autoload.php';
 use LordDashMe\TwoFactorAuth\RFC4226\HOTP;
 use LordDashMe\TwoFactorAuth\Utility\Base32;
 
-$hotp = new HOTP(Base32::encode('P@ssw0rd!'));
+$secret = Base32::encode('P@ssw0rd!');
+
+$hotp = new HOTP($secret);
+
 $hotp->setLength(6)
+     ->setAlgorithm('sha1')
      ->prepare()
      ->generate();
 
@@ -52,8 +52,12 @@ require __DIR__  . '/vendor/autoload.php';
 use LordDashMe\TwoFactorAuth\RFC4226\HOTP;
 use LordDashMe\TwoFactorAuth\Utility\Base32;
 
-$hotp = new HOTP(Base32::encode('P@ssw0rd!'));
+$secret = Base32::encode('P@ssw0rd!');
+
+$hotp = new HOTP($secret);
+
 $hotp->setLength(6)
+     ->setAlgorithm('sha1')
      ->prepare();
 
 echo $hotp->verify('444555'); // true
@@ -71,10 +75,15 @@ require __DIR__  . '/vendor/autoload.php';
 use LordDashMe\TwoFactorAuth\RFC6238\TOTP;
 use LordDashMe\TwoFactorAuth\Utility\Base32;
 
-$totp = new TOTP(Base32::encode('P@ssw0rd!'));
-$totp->setTimeRemainingInSeconds(30)
+$secret = Base32::encode('P@ssw0rd!');
+
+$totp = new TOTP($secret);
+
+$totp->setTimeZone('Asia/Manila')
+     ->setTimeRemainingInSeconds(30)
      ->setTimeAdjustments(10)
      ->setLength(6)
+     ->setAlgorithm('sha1')
      ->prepare()
      ->generate();
 
@@ -91,10 +100,15 @@ require __DIR__  . '/vendor/autoload.php';
 use LordDashMe\TwoFactorAuth\RFC6238\TOTP;
 use LordDashMe\TwoFactorAuth\Utility\Base32;
 
-$totp = new TOTP(Base32::encode('P@ssw0rd!'));
-$totp->setTimeRemainingInSeconds(30)
+$secret = Base32::encode('P@ssw0rd!');
+
+$totp = new TOTP($secret);
+
+$totp->setTimeZone('Asia/Manila')
+     ->setTimeRemainingInSeconds(30)
      ->setTimeAdjustments(10)
      ->setLength(6)
+     ->setAlgorithm('sha1')
      ->prepare();
 
 echo $totp->verify('552344'); // true
@@ -113,15 +127,18 @@ use LordDashMe\TwoFactorAuth\Utility\Base32;
 use LordDashMe\TwoFactorAuth\GoogleAuthenticator\BarcodeURL;
 use LordDashMe\TwoFactorAuth\GoogleAuthenticator\TOTPFormat;
 
-$secret = Base32::encode('P@ssw0rd!', false);
+$secret = Base32::encode('P@ssw0rd!');
 $accountUser = 'reyesjoshuaclifford@gmail.com';
 $issuer = 'TwoFactorAuth';
 $digits = 6;
 $period = 30;
+$algorithm = 'sha1';
 
-$totpFormat = new TOTPFormat($period);
-$barcodeURL = new BarcodeURL($secret, $accountUser, $issuer, $totpFormat);
-$barcodeURL->setAlgorithm('SHA1')
+$format = new TOTPFormat($period);
+
+$barcodeURL = new BarcodeURL($secret, $accountUser, $issuer, $format);
+
+$barcodeURL->setAlgorithm($algorithm) // sha1 (Default), sha256, sha512
            ->setDigits($digits)
            ->build();
 

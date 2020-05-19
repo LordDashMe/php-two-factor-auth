@@ -1,5 +1,6 @@
-
 <?php
+
+namespace LordDashMe\TwoFactorAuth\Tests\Unit\RFC4226;
 
 use Mockery as Mockery;
 use PHPUnit\Framework\TestCase;
@@ -15,8 +16,9 @@ class HOTPTest extends TestCase
     public function it_should_generate_hotp()
     {
         $hotp = new HOTP(Base32::encode('P@ssw0rd!'));
+
         $hotp->prepare()
-            ->generate();
+             ->generate();
 
         $this->assertTrue(strlen($hotp->get()) === 6);
     }

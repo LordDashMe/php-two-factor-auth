@@ -1,5 +1,7 @@
 <?php
 
+namespace LordDashMe\TwoFactorAuth\Tests\Unit\RFC6238;
+
 use Mockery as Mockery;
 use PHPUnit\Framework\TestCase;
 
@@ -14,11 +16,13 @@ class TOTPTest extends TestCase
     public function it_should_generate_totp()
     {
         $totp = new TOTP(Base32::encode('P@ssw0rd!'));
-        $totp->setTimeRemainingInSeconds(30)
-            ->setTimeAdjustments(10)
-            ->setLength(6)
-            ->prepare()
-            ->generate();
+        
+        $totp->setTimeZone('Asia/Manila')
+             ->setTimeRemainingInSeconds(30)
+             ->setTimeAdjustments(0)
+             ->setLength(6)
+             ->prepare()
+             ->generate();
 
         $this->assertTrue(strlen($totp->get()) === 6);
     }

@@ -1,5 +1,7 @@
 <?php
 
+namespace LordDashMe\TwoFactorAuth\Tests\Unit\GoogleAuthenticator;
+
 use Mockery as Mockery;
 use PHPUnit\Framework\TestCase;
 
@@ -23,9 +25,10 @@ class BarcodeURLTest extends TestCase
             'TwoFactorAuth',
             $hotpFormat 
         );
-        $barcodeURL->setAlgorithm('SHA1');
-        $barcodeURL->setDigits(6);
-        $barcodeURL->build();
+
+        $barcodeURL->setAlgorithm('sha1')
+                   ->setDigits(6)
+                   ->build();
 
         $this->assertEquals(
             'https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth://hotp/TwoFactorAuth:reyesjoshuaclifford@gmail.com?secret=KBAHG43XGBZGIII%3D&algorithm=SHA1&digits=6&counter=1&issuer=TwoFactorAuth',
@@ -46,9 +49,10 @@ class BarcodeURLTest extends TestCase
             'TwoFactorAuth',
             $totpFormat 
         );
-        $barcodeURL->setAlgorithm('SHA1');
-        $barcodeURL->setDigits(6);
-        $barcodeURL->build();
+
+        $barcodeURL->setAlgorithm('sha1')
+                   ->setDigits(6)
+                   ->build();
 
         $this->assertEquals(
             'https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth://totp/TwoFactorAuth:reyesjoshuaclifford@gmail.com?secret=KBAHG43XGBZGIII%3D&algorithm=SHA1&digits=6&period=30&issuer=TwoFactorAuth',
@@ -69,9 +73,10 @@ class BarcodeURLTest extends TestCase
             '',
             $totpFormat 
         );
-        $barcodeURL->setAlgorithm('SHA1');
-        $barcodeURL->setDigits(6);
-        $barcodeURL->build();
+
+        $barcodeURL->setAlgorithm('SHA1')
+                   ->setDigits(6)
+                   ->build();
 
         $this->assertEquals(
             'https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth://totp/reyesjoshuaclifford@gmail.com?secret=KBAHG43XGBZGIII%3D&algorithm=SHA1&digits=6&period=30',

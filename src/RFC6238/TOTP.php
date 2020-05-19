@@ -30,6 +30,13 @@ class TOTP extends OTP
     protected $maxVerificationNumber = 3;
 
     /**
+     * The time zone for the TOTP.
+     * 
+     * @var string
+     */
+    private $timeZone = 'Asia/Manila';
+
+    /**
      * The time remaining for the TOTP.
      * 
      * @var int
@@ -46,6 +53,20 @@ class TOTP extends OTP
     public function __construct($secret)
     {
         parent::__construct($secret);
+    }
+
+    /**
+     * The setter method for the time zone class property.
+     * 
+     * @param  string $timeZone  The time zone to be used for the TOTP.
+     * 
+     * @return $this
+     */
+    public function setTimeZone($timeZone)
+    {
+        $this->timeZone = $timeZone;
+
+        return $this;
     }
 
     /**
@@ -85,11 +106,16 @@ class TOTP extends OTP
     public function prepare()
     {
         $now = new DateTime();
-        $timeZone = new DateTimeZone('Asia/Manila');
+        
+        $timeZone = new DateTimeZone($this->timeZone);
+        
         $now->setTimezone($timeZone);
+        
         $timeFormatted = $now->format('Y-m-d H:i:s T');
 
-        $time = \floor((\strtotime($timeFormatted) + ($this->timeAdjustments)) / $this->timeRemainingInSeconds);
+        $time = \floor(
+            (\strtotime($timeFormatted) + ($this->timeAdjustments)) / $this->timeRemainingInSeconds
+        );
 
         $this->setCounter($time);
 

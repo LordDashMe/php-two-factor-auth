@@ -1,5 +1,7 @@
 <?php
 
+namespace LordDashMe\TwoFactorAuth\Tests\Unit\Utility;
+
 use Mockery as Mockery;
 use PHPUnit\Framework\TestCase;
 

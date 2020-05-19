@@ -1,5 +1,7 @@
 <?php
 
+namespace LordDashMe\TwoFactorAuth\Tests\Unit;
+
 use Mockery as Mockery;
 use PHPUnit\Framework\TestCase;
 
@@ -14,8 +16,10 @@ class OTPTest extends TestCase
     public function it_should_generate_otp()
     {
         $otp = new OTP(Base32::encode('P@ssw0rd!'));
+        
         $otp->setLength(6)
             ->setCounter(1)
+            ->setAlgorithm('sha1')
             ->generate();
 
         $this->assertEquals('238681', $otp->get());
@@ -27,8 +31,10 @@ class OTPTest extends TestCase
     public function it_should_verify_valid_otp()
     {
         $otp = new OTP(Base32::encode('P@ssw0rd!'));
+        
         $otp->setLength(6)
-            ->setCounter(1);
+            ->setCounter(1)
+            ->setAlgorithm('sha1');
 
         $this->assertTrue($otp->verify('238681'));
     }
@@ -39,8 +45,10 @@ class OTPTest extends TestCase
     public function it_should_verify_invalid_otp()
     {
         $otp = new OTP(Base32::encode('P@ssw0rd!'));
+        
         $otp->setLength(6)
-            ->setCounter(1);
+            ->setCounter(1)
+            ->setAlgorithm('sha1');
 
         $this->assertTrue(! $otp->verify('1'));
     }
