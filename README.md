@@ -1,4 +1,4 @@
-# Two Factor Auth
+# PHP Two Factor Auth
 
 A PHP library for RFC 4226 and RFC 6238.
 
